@@ -4,12 +4,16 @@ import * as React from 'react';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation'
 import { Tag } from "antd"
 import UpdateModal from './updateModal';
+import CreateModal from './createModal';
+import QrModal from './qrModal';
 
 
 
 const TableAlone = ({ _users }:any) => {
 
   const [openModal, setOpenModal] = React.useState(false)
+  const [openModalC, setOpenModalC] = React.useState(false)
+  const [openModalQR, setOpenModalQR] = React.useState(false)
   const [record, setrecord] = React.useState({})
 
     const handleRemove = async (record:any) => {
@@ -53,6 +57,11 @@ const TableAlone = ({ _users }:any) => {
 
     const handleUpdate = (record:any) => {
       setOpenModal(true)
+      setrecord(record)
+    }
+
+    const handleQR = (record:any) => {
+      setOpenModalQR(true)
       setrecord(record)
     }
 
@@ -107,14 +116,19 @@ const TableAlone = ({ _users }:any) => {
                 </Popconfirm>
                 <br/>
                 <a onClick={() =>handleUpdate(record)}>Actualizar</a>
+                <br/>
+                <a onClick={() =>handleQR(record)}>Generar QR</a>
               </>
             ),
           },
       ];
     return ( 
       <>
+        <Button type='primary' onClick={() =>setOpenModalC(true)}>Agregar Usuario</Button>
         <Table dataSource={_users} columns={columnsUsers} />
         <UpdateModal isOpen={openModal} setIsOpen={setOpenModal} record={record}/>
+        <CreateModal isOpen={openModalC} setIsOpen={setOpenModalC} />
+        <QrModal isOpen={openModalQR} setIsOpen={setOpenModalQR} record={record}/>
       </>
     );
 }
