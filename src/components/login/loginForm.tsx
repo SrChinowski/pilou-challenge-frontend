@@ -5,12 +5,13 @@ import { Alert, Button, Checkbox, Form, Input } from 'antd';
 import styles from '../../app/page.module.css'
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
-
+import { useCookies } from 'react-cookie';
 
 export default function LoginForm() {
 
     const router = useRouter();
 
+    const [cookies, setCookie] = useCookies(['token']);
     const [loading, setLoading] = useState(false)
     const [unauthorized, setUnauthorized] = useState(false)
 
@@ -35,6 +36,7 @@ export default function LoginForm() {
             if (response.ok) {
                 const data = await response.json();
                 localStorage.setItem('token', data.access_token);
+                setCookie('token', data.access_token);
                 router.push('/dashboard');
             } else {
                 setUnauthorized(true)

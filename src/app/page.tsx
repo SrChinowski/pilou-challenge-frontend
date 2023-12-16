@@ -1,11 +1,10 @@
 
 import Image from 'next/image'
 import styles from './page.module.css'
-import { Badge, Button, Col, ConfigProvider, Row } from 'antd';
+import { Badge, Col, ConfigProvider, Row } from 'antd';
 import theme from '../theme/themeConfig';
 import LoginForm from '@/components/login/loginForm';
 import 'antd/dist/reset.css';
-import { useEffect } from 'react';
 
 export default function Home() {
 
