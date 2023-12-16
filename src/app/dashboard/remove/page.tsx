@@ -6,7 +6,6 @@ import Sider from "antd/es/layout/Sider";
 import Image from "next/image";
 import { UserOutlined } from '@ant-design/icons';
 import UserBadge from "@/app/dashboard/userBadge";
-import UsersTable from "@/components/dashboard/usersTable";
 
 const MenuItems = [
     {
@@ -26,12 +25,8 @@ const MenuItems = [
     },
 ]
 
-export default function Dashboard({
-  searchParams
-} :{
-  searchParams?: any
-}) {
-// console.log(searchParams)
+export default function DashboardRemove() {
+
   return (
     <main className={styles.main}>
       <Layout style={{ width: "100%" }}>
@@ -63,7 +58,7 @@ export default function Dashboard({
                 minHeight: 280,
               }}
             >
-              <UsersTable deleteAction={searchParams.delete || ""}/>
+              <h1>Remove</h1>
             </Content>
           </Layout>
         </Layout>
